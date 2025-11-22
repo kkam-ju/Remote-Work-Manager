@@ -71,6 +71,7 @@ app.config['MYSQL_DB'] = 'yolo_webapp_db'
 # IoT 장비 IP 설정 (필요 시 수정)
 RPI_DETECT_URL = "[http://192.168.0.104:18080/detect](http://192.168.0.104:18080/detect)"
 RPI_LED_SERVER_HOST = '192.168.0.94'
+```
 
 ## 📂 프로젝트 파일 구조 (File Structure)
 
