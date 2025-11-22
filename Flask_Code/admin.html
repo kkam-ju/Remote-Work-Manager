@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>(주)더문 관리자 시스템</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/admin.css') }}">
+</head>
+<body>
+    <header class="page-header">
+        <div class="title">(주)더문 관리자 시스템</div>
+        <div class="header-actions">
+            <a href="themoon-mfc://auth?token={{ mfc_token }}" class="btn-desktop">데스크톱 프로그램 실행</a>
+            <a href="{{ url_for('logout') }}" class="logout-link">로그아웃</a>
+        </div>
+    </header>
+
+    <div id="notification-container"></div>
+
+    <main class="main-container">
+        <aside class="sidebar">
+            <h2>직원 목록</h2>
+            <ul id="employee-list">
+                {% for user in all_users %}
+                <li data-username="{{ user.username }}" 
+                    data-displayname="{{ user.full_name }}">
+                    {{ user.full_name }} ({{ user.username }})
+                </li>
+                {% endfor %}
+            </ul>
+        </aside>
+
+        <section class="main-content">
+            <h2 id="welcome-message">직원을 선택하여 현황을 확인하세요.</h2>
+            <p id="sub-message"></p>
+            
+            <div class="content-display">
+                <div id="video-container">
+                    <img id="video-feed" src="" alt="선택된 직원의 실시간 영상">
+                </div>
+                <div id="work-status-container">
+                    <div class="status-header">
+                        <h3 id="status-title">근무 현황</h3>
+                        <button id="refresh-work-status-btn">조회</button>
+                    </div>
+
+                    <div class="chart-wrapper">
+                        <canvas id="adminWorkChart"></canvas>
+                    </div>
+                    <div class="time-display">
+                        <div class="time-item">
+                            <span class="time-label">총 근무 시간</span>
+                            <span class="time-value" id="worked-time">--:--:--</span>
+                        </div>
+                        <div class="time-item">
+                            <span class="time-label" id="extra-time-label">남은 시간</span>
+                            <span class="time-value" id="extra-time-value">--:--:--</span>
+                        </div>
+                    </div>
+                </div>
+                <div id="joystick-controller">
+                    <h3>카메라 제어</h3>
+                    <div id="joystick-container">
+                        <div id="joystick-base">
+                            <div id="joystick-handle"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="{{ url_for('static', filename='js/admin.js') }}"></script>
+</body>
+</html>

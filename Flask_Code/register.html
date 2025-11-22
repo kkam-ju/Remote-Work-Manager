@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% set container_class = 'centered-container' %}
+
+{% block title %}회원가입{% endblock %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/register.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="register-page-wrapper">
+    <header class="main-header">
+        <div class="header-content">
+            <h1 class="company-logo">(주)더문</h1>
+            <span class="system-tagline">업무 관리 시스템</span>
+        </div>
+    </header>
+    <main class="main-content-area">
+        <div class="register-card single-card">
+            <h2>직원 계정 등록</h2>
+            <p class="form-description">모든 항목을 정확하게 입력해주세요.</p>
+
+            <div id="message-area"></div>
+
+            <form id="register-form">
+                <div class="form-group">
+                    <label for="employee_number">사원 번호</label>
+                    <input type="text" id="employee_number" name="employee_number" class="form-control" required>
+                </div>
+                 <div class="form-group">
+                    <label for="full_name">이름</label>
+                    <input type="text" id="full_name" name="full_name" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">이메일</label>
+                    <input type="email" id="email" name="email" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone_number">전화번호</label>
+                    <input type="tel" id="phone_number" name="phone_number" class="form-control" placeholder="010-1234-5678" required>
+                </div>
+                <div class="form-group">
+                    <label for="username">사용자 이름 (로그인 ID)</label>
+                    <input type="text" id="username" name="username" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">비밀번호</label>
+                    <input type="password" id="password" name="password" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="confirm_password">비밀번호 확인</label>
+                    <input type="password" id="confirm_password" name="confirm_password" class="form-control" required>
+                </div>
+                <button type="submit">등록하기</button>
+            </form>
+            <p class="login-link">
+                이미 계정이 있으신가요? <a href="{{ url_for('login') }}">로그인</a>
+            </p>
+        </div>
+    </main>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/register.js') }}"></script>
+{% endblock %}

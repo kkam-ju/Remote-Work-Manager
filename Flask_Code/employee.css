@@ -1,0 +1,181 @@
+/* static/css/employee.css (이 코드로 전체를 덮어쓰세요) */
+
+/* --- 기본 스타일 & 전체 화면 설정 --- */
+html, body {
+    height: 100%;
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f0f2f5;
+    color: #333;
+    padding: 20px;
+    box-sizing: border-box;
+}
+.dashboard-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* --- 헤더 스타일 --- */
+.dashboard-header {
+    background-color: #ffffff;
+    padding: 15px 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-shrink: 0;
+}
+.header-left h1 { margin: 0; font-size: 1.8rem; color: #2c3e50; }
+.header-right { display: flex; align-items: center; gap: 15px; }
+.btn {
+    padding: 10px 18px;
+    border-radius: 8px;
+    border: none;
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+.btn:hover { transform: translateY(-2px); box-shadow: 0 6px 15px rgba(0,0,0,0.1); }
+.btn-primary { background-color: #007bff; }
+.btn-info { background-color: #3498db; }
+.btn-secondary { background-color: #95a5a6; }
+
+/* --- 메인 콘텐츠 영역 --- */
+.dashboard-main {
+    flex-grow: 1;
+    display: flex;
+    gap: 20px;
+    align-items: stretch;
+    overflow: hidden;
+}
+
+.panel-left { flex: 3; min-width: 400px; }
+.panel-right { flex: 2; min-width: 350px; display: flex; flex-direction: column; gap: 20px; }
+
+
+/* --- 카드 스타일 --- */
+.card {
+    background-color: #ffffff;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+}
+.card h3, .card h4 {
+    margin-top: 0;
+    border-bottom: 2px solid #ecf0f1;
+    padding-bottom: 15px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+}
+
+/* --- 영상 카드 --- */
+.video-card { height: 100%; }
+#processed-container { flex-grow: 1; background-color: #000; border-radius: 8px; }
+#processed_image { width: 100%; height: 100%; object-fit: contain; border-radius: 8px; }
+
+/* --- 그래프 & 상태 카드 --- */
+.chart-card {
+    flex: 1 1 auto;
+    overflow: hidden;
+}
+.status-card {
+    flex: 0 0 auto;
+}
+#chart-wrapper { 
+    position: relative; 
+    flex-grow: 1; 
+    display: flex; 
+    flex-direction: column; /* ✨ 타이머를 그래프 아래에 배치하기 위해 변경 */
+    align-items: center; 
+    justify-content: center;
+    min-height: 250px;
+}
+
+/* --- 상태 변경 버튼 --- */
+.status-buttons { 
+    display: grid; /* ✨ 3개의 버튼을 균일하게 배치 */
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 15px; 
+}
+.status-btn {
+    padding: 15px;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+.status-btn:disabled { /* ✨ 비활성화된 버튼 스타일 */
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+.btn-on { background: linear-gradient(45deg, #2ecc71, #27ae60); }
+.btn-away { background: linear-gradient(45deg, #f39c12, #e67e22); }
+.btn-end { background: linear-gradient(45deg, #e74c3c, #c0392b); }
+        
+/* --- ✨ [신규] 타이머 디스플레이 스타일 --- */
+#timer-display { 
+    display: none; /* 평소에는 숨김 */
+    width: 100%;
+    justify-content: space-around; 
+    background-color: #f8f9fa; 
+    border-radius: 8px; 
+    padding: 15px 0; 
+    margin-top: 20px; 
+    box-sizing: border-box;
+}
+.timer-item { text-align: center; }
+.timer-label { font-size: 0.9rem; color: #6c757d; }
+.timer-value { font-size: 1.5rem; font-weight: bold; color: #343a40; display: block; }
+
+/* employee.css 파일 맨 아래에 추가 */
+
+#drowsy-warning-overlay {
+    display: none; /* 평소에는 숨김 */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.75);
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#drowsy-warning-overlay .warning-box {
+    background-color: #fff;
+    padding: 40px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    border-top: 10px solid #dc3545;
+}
+
+#drowsy-warning-overlay h1 {
+    color: #dc3545;
+    margin-top: 0;
+    font-size: 2.5em;
+}
+
+#drowsy-warning-overlay p {
+    font-size: 1.2em;
+    color: #333;
+}

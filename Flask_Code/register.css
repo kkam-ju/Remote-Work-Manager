@@ -1,0 +1,53 @@
+.register-page-wrapper {
+    width: 100%;
+    max-width: 500px;
+    text-align: center;
+}
+
+.main-header {
+    margin-bottom: 30px;
+}
+
+.company-logo {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #333;
+    margin: 0;
+}
+
+.system-tagline {
+    font-size: 1rem;
+    color: #666;
+}
+
+.register-card h2 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 1.8rem;
+    color: #333;
+}
+
+.form-description {
+    color: #777;
+    margin-bottom: 30px;
+}
+
+#message-area {
+    min-height: 50px;
+    margin-bottom: -10px;
+}
+
+.login-link {
+    margin-top: 25px;
+    color: #555;
+}
+
+.login-link a {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.login-link a:hover {
+    text-decoration: underline;
+}

@@ -1,0 +1,66 @@
+.login-page-wrapper {
+    width: 100%;
+    max-width: 450px;
+    text-align: center;
+}
+.main-header {
+    margin-bottom: 30px;
+}
+.company-logo {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #333;
+    margin: 0;
+}
+.system-tagline {
+    font-size: 1rem;
+    color: #666;
+}
+.login-card h2 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 1.8rem;
+    color: #333;
+}
+.form-description {
+    color: #777;
+    margin-bottom: 30px;
+}
+.password-wrapper {
+    position: relative;
+}
+.toggle-password {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    user-select: none;
+}
+.radio-group {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 20px;
+}
+.radio-group label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+.signup-link {
+    margin-top: 25px;
+    color: #555;
+}
+.signup-link a {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: 500;
+}
+.signup-link a:hover {
+    text-decoration: underline;
+}
+.main-footer {
+    margin-top: 40px;
+    color: #888;
+}

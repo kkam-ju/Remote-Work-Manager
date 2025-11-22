@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% set container_class = 'centered-container' %}
+
+{% block title %}로그인{% endblock %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="login-page-wrapper">
+    <header class="main-header">
+        <div class="header-content">
+            <h1 class="company-logo">(주)더문</h1>
+            <span class="system-tagline">업무 관리 시스템</span>
+        </div>
+    </header>
+    <main class="main-content-area">
+        <div class="login-card single-card">
+            <h2 id="login-title">사용자 로그인</h2>
+            <p class="form-description">시스템을 이용하시려면 로그인해주세요.</p>
+
+            {% if error %}
+                <div class="alert error">{{ error }}</div>
+            {% endif %}
+
+            <form method="post">
+                <div class="form-group">
+                    <label for="username">아이디</label>
+                    <input type="text" id="username" name="username" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">비밀번호</label>
+                    <div class="password-wrapper">
+                        <input type="password" id="password" name="password" class="form-control" required>
+                        <span id="toggle-password" class="toggle-password">👁️</span>
+                    </div>
+                </div>
+                <button type="submit" id="login-button" class="btn-login">로그인</button>
+                <div class="radio-group">
+                    <label>
+                        <input type="radio" name="login_type" value="employee" checked>
+                        <span class="radio-label">일반 계정</span>
+                    </label>
+                    <label>
+                        <input type="radio" name="login_type" value="admin">
+                        <span class="radio-label">관리자</span>
+                    </label>
+                </div>
+            </form>
+
+            <p class="signup-link">
+                계정이 없으신가요? <a href="{{ url_for('signup') }}">회원가입</a>
+            </p>
+        </div>
+    </main>
+    <footer class="main-footer">
+        <p class="footer-text-horizontal">© 2025 The Moon Inc. All Rights Reserved.</p>
+    </footer>
+</div>
+{% endblock %}

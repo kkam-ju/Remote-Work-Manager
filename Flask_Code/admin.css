@@ -1,0 +1,116 @@
+/* static/css/admin.css 파일의 모든 내용을 이 코드로 교체하세요. */
+
+/* --- 기본 설정 --- */
+body {
+    font-family: 'Malgun Gothic', '맑은 고딕', sans-serif; margin: 0;
+    display: flex; flex-direction: column; height: 100vh; background-color: #f0f2f5;
+}
+
+/* --- 헤더 --- */
+.page-header {
+    display: flex; justify-content: space-between; align-items: center; padding: 10px 24px;
+    background-color: #2c3e50; color: #ffffff; flex-shrink: 0; box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+.page-header .title { font-size: 18px; font-weight: bold; }
+.header-actions { display: flex; align-items: center; gap: 16px; }
+.header-actions .btn-desktop, #refresh-work-status-btn {
+    padding: 6px 12px; font-size: 14px; color: #fff; background-color: #3498db;
+    border: none; border-radius: 4px; cursor: pointer; transition: background-color 0.2s; text-decoration: none;
+}
+.header-actions .btn-desktop:hover, #refresh-work-status-btn:hover { background-color: #2980b9; }
+.header-actions .logout-link { font-size: 14px; color: #bdc3c7; text-decoration: none; transition: color 0.2s; }
+.header-actions .logout-link:hover { color: #ffffff; }
+
+/* --- 메인 레이아웃 --- */
+.main-container { display: flex; flex-grow: 1; padding: 24px; gap: 24px; overflow: hidden; }
+
+/* --- 사이드바 (직원 목록) --- */
+.sidebar {
+    width: 240px; background-color: #ffffff; border-radius: 8px; padding: 20px;
+    flex-shrink: 0; box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+.sidebar h2 { font-size: 18px; margin: 0 0 20px 0; padding-bottom: 10px; border-bottom: 1px solid #eee; }
+.sidebar ul { list-style: none; padding: 0; margin: 0; }
+.sidebar li { padding: 10px 12px; margin-bottom: 4px; cursor: pointer; border-radius: 6px; transition: background-color 0.2s, color 0.2s; }
+.sidebar li:hover { background-color: #f5f5f5; }
+.sidebar li.active { background-color: #4a67e8; color: white; font-weight: bold; }
+
+/* --- 메인 컨텐츠 영역 --- */
+.main-content { flex-grow: 1; display: flex; flex-direction: column; }
+.main-content h2 { font-size: 24px; font-weight: 500; margin: 0 0 4px 0; }
+.main-content p { color: #6c757d; font-size: 15px; margin: 0 0 24px 0; }
+.content-display { display: flex; gap: 24px; flex-grow: 1; }
+
+/* --- 비디오, 그래프, 조이스틱 컨테이너 --- */
+#video-container {
+    flex: 5; /* ✨ 수정: 영상 영역이 훨씬 더 많은 공간을 차지하도록 비율 증가 */
+    background-color: #000; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    display: flex; justify-content: center; align-items: center; color: #fff; min-width: 400px;
+}
+#video-feed { width: 100%; height: 100%; object-fit: contain; border-radius: 8px; }
+
+
+/* ✨✨✨ [핵심 수정] 근무 현황과 카메라 제어 사이즈 축소 ✨✨✨ */
+#graph-container, #work-status-container {
+    flex: 1.2; /* ✨ 수정: 영역 비율 대폭 감소 */
+    min-width: 260px; /* ✨ 수정: 최소 너비 감소 */
+    min-height: 350px; /* ✨ 중요: 깜빡임 방지를 위한 높이 고정 */
+    
+    padding: 20px; background-color: #fff; border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    display: flex; flex-direction: column;
+}
+
+#joystick-controller {
+    flex: 0.8; /* ✨ 수정: 조이스틱 영역 비율 대폭 감소 */
+    min-width: 160px; /* ✨ 수정: 최소 너비 감소 */
+
+    padding: 15px; background-color: #ffffff; border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    display: flex; flex-direction: column; align-items: center;
+}
+/* ✨✨✨ 여기까지가 핵심 수정 부분입니다 ✨✨✨ */
+
+.graph-header, .status-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
+#graph-title, #status-title { font-size: 16px; font-weight: 500; margin: 0; }
+.time-display { display: flex; flex-direction: column; gap: 15px; }
+.time-item { display: flex; justify-content: space-between; align-items: baseline; }
+.time-label { font-size: 16px; color: #555; }
+.time-value { font-size: 24px; font-weight: bold; color: #333; font-family: 'Roboto Mono', monospace; }
+.time-item .overtime { color: #28a745; }
+
+#joystick-controller h3 { margin: 0 0 15px 0; color: #333; font-size: 16px; font-weight: 500; }
+#joystick-container { width: 120px; height: 120px; display: flex; justify-content: center; align-items: center; }
+#joystick-base { width: 100px; height: 100px; background-color: #e0e0e0; border-radius: 50%; position: relative; border: 3px solid #d0d0d0; }
+#joystick-handle {
+    width: 45px; height: 45px; background-color: #666; border-radius: 50%;
+    position: absolute; cursor: grab; top: 50%; left: 50%; transform: translate(-50%, -50%);
+}
+#joystick-handle:active { cursor: grabbing; }
+
+/* admin.css 파일 맨 아래에 추가 */
+#notification-container {
+    position: fixed;
+    top: 80px; /* 헤더 높이에 맞춰 조정 */
+    right: 20px;
+    z-index: 2000;
+    width: 320px;
+}
+
+.notification-toast {
+    background-color: #dc3545; /* 빨간색 경고 */
+    color: white;
+    padding: 1rem;
+    border-radius: 0.25rem;
+    margin-bottom: 1rem;
+    box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    transform: translateX(100%);
+    transition: all 0.4s ease-in-out;
+    font-weight: bold;
+}
+
+.notification-toast.show {
+    opacity: 1;
+    transform: translateX(0);
+}

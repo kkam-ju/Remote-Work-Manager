@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ display_name }}님 - 직원 페이지</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/employee.css') }}">
+</head>
+<body>
+
+<div id="drowsy-warning-overlay" style="display: none;">
+    <div class="warning-box">
+        <h1>경고</h1>
+        <p>졸음이 감지되었습니다! 잠시 휴식을 취하세요.</p>
+    </div>
+</div>
+<audio id="alarm-sound" src="{{ url_for('static', filename='sounds/alarm.mp3') }}" preload="auto" loop></audio>
+
+<div style="display: none;">
+    <video id="video" autoplay playsinline muted></video>
+    <canvas id="canvas"></canvas>
+</div>
+
+<div class="dashboard-container">
+    <header class="dashboard-header">
+        <div class="header-left">
+            <h1>환영합니다, {{ display_name }} 님!</h1>
+        </div>
+        <div class="header-right">
+            {% if mfc_token %}
+              <a href="{{ url_for('download_installer') }}" class="btn btn-primary">설치 파일 다운로드</a>
+              <a href="themoon-mfc://auth?token={{ mfc_token }}" class="btn btn-primary">데스크톱 프로그램 실행</a>
+            {% endif %}
+            <a href="{{ url_for('register_face') }}" class="btn btn-info">얼굴 등록</a>
+            <a href="{{ url_for('logout') }}" class="btn btn-secondary">로그아웃</a>
+        </div>
+    </header>
+
+    <main class="dashboard-main">
+        <section class="panel-left">
+            <div class="card video-card">
+                <h3>실시간 객체 탐지</h3>
+                <div id="processed-container">
+                    <img id="processed_image" src="" alt="처리된 영상이 여기에 표시됩니다.">
+                </div>
+            </div>
+        </section>
+
+        <aside class="panel-right">
+            <div class="card chart-card">
+                <h4>총 근무 시간 현황</h4>
+                <div id="chart-wrapper">
+                    <canvas id="myWorkChart"></canvas>
+                </div>
+                <div id="timer-display" style="display: none;">
+                    <div class="timer-item">
+                        <span class="timer-label">총 시간</span>
+                        <span id="total-timer" class="timer-value">00:00:00</span>
+                    </div>
+                    <div class="timer-item">
+                        <span class="timer-label">근무 시간</span>
+                        <span id="work-timer" class="timer-value">00:00:00</span>
+                    </div>
+                    <div class="timer-item">
+                        <span class="timer-label">자리 비움</span>
+                        <span id="away-timer" class="timer-value">00:00:00</span>
+                    </div>
+                </div>
+            </div>
+            <div class="card status-card">
+                <h4>상태 변경</h4>
+                <div class="status-buttons">
+                    <button id="clock-in-btn" class="status-btn btn-on">근무 시작</button>
+                    <button id="away-btn" class="status-btn btn-away" disabled>자리 비움</button>
+                    <button id="clock-out-btn" class="status-btn btn-end" disabled>근무 종료</button>
+                </div>
+            </div>
+        </aside>
+    </main>
+</div>
+
+<script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="{{ url_for('static', filename='js/employee.js') }}"></script>
+
+</body>
+</html>
