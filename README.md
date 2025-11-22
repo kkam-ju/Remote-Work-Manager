@@ -71,3 +71,37 @@ app.config['MYSQL_DB'] = 'yolo_webapp_db'
 # IoT 장비 IP 설정 (필요 시 수정)
 RPI_DETECT_URL = "[http://192.168.0.104:18080/detect](http://192.168.0.104:18080/detect)"
 RPI_LED_SERVER_HOST = '192.168.0.94'
+
+## 📂 프로젝트 파일 구조 (File Structure)
+
+이 프로젝트는 크게 **데이터베이스(DB)**, **웹 서버(Flask)**, **윈도우 클라이언트(MFC)**로 구성되어 있습니다.
+
+### 1. 🗄️ Database (DB)
+* **`sql테이블 최종.sql`**: 프로젝트에 필요한 모든 테이블(사원, 채팅, 업무, 로그 등)을 생성하는 DDL 스크립트
+* **`value값 최종.sql`**: 부서 정보, 관리자 계정 등 초기 테스트 데이터를 삽입하는 DML 스크립트
+
+### 2. 🖥️ Server (Flask_Code)
+웹 대시보드 및 전체 시스템의 백엔드 로직을 담당합니다.
+* **`app.py`**: 메인 서버 애플리케이션 파일
+    * REST API (로그인, 데이터 조회) 및 Socket.IO (실시간 통신) 구현
+    * MySQL DB 연동 및 Raspberry Pi(IoT) 제어 명령 전송
+    * SSL 인증서(`cert.pem`, `key.pem`)를 이용한 HTTPS 보안 서버 구동
+* **Frontend Resources (HTML/CSS/JS)**:
+    * **`admin.*`**: 관리자용 통합 대시보드 (근태 모니터링, 사원 관리)
+    * **`employee.*`**: 일반 사원용 페이지 (개인 근태 조회)
+    * **`login.*`, `register.*`**: 사용자 인증 및 회원가입 페이지
+    * **`registerface.*`**: AI 안면 인식 학습을 위한 얼굴 데이터 등록 페이지
+
+### 3. 💻 Client (MFC_Code)
+직원들이 PC에서 사용하는 Windows 전용 메신저 및 협업 프로그램입니다.
+* **Core**:
+    * **`TheMoon.cpp/h`**: 프로그램 진입점 및 애플리케이션 초기화
+    * **`TheMoonDlg.cpp/h`**: 메인 컨테이너 다이얼로그 (화면 네비게이션 및 인증 토큰 관리)
+* **Features (Dialogs)**:
+    * **🏠 홈 (Home)**: `HomeDlg` (출퇴근 버튼, 나의 상태 변경, 공지사항 요약)
+    * **💬 메신저 (Messenger)**: `MessengerDlg` (실시간 1:1 및 그룹 채팅)
+    * **👥 사원 조회 (Friends)**: `FriendsListDlg` (조직도 확인 및 동료 정보 조회)
+    * **📋 게시판 (Community)**: `CommunityDlg`, `WritePostDlg`, `PostDetailDlg` (익명 게시판 및 공지사항)
+    * **💼 업무 결재 (Work)**: `NewWorkRequestDlg`, `WorkDetailDlg` (업무 기안 및 진행 상황 추적)
+* **UI Components**:
+    * **`ModernButton`, `ModernEdit`**: 세련된 디자인을 위한 커스텀 UI 컨트롤 클래스
