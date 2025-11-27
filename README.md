@@ -35,7 +35,7 @@
 | **Database** | **MySQL** | 관계형 데이터베이스 설계 (ERD 기반의 유저, 채팅, 업무 데이터 관리) |
 | **Frontend** | **HTML/CSS/JS** | 반응형 웹 대시보드, 관리자 페이지, 화상 채팅 UI |
 | **Client** | **C++ (MFC)** | Windows 데스크톱 전용 메신저 및 근태 관리 클라이언트 |
-| **IoT / AI** | **Raspberry Pi, YOLO** | 객체 인식 AI 서버 및 하드웨어 제어 (TCP/IP 소켓 통신) |
+| **IoT / AI** | **Raspberry Pi, dlib** | 객체 인식 AI 서버 및 하드웨어 제어 (TCP/IP 소켓 통신) |
 
 ---
 
